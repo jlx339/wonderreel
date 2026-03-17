@@ -1,0 +1,75 @@
+pipeline:
+  mode: hybrid           # hybrid | local
+  output_dir: output
+  output_formats:
+    - 16x9
+    - 9x16
+
+script:
+  provider: ollama       # ollama | claude
+  ollama_model: llama3.2
+  claude_model: claude-haiku-4-5-20251001
+  target_age: "5-8"
+  duration_seconds: 60
+  scenes_count: 7
+
+images:
+  provider: comfyui      # replicate | comfyui | runninghub
+  style_prefix: "children's book illustration, flat design, bright warm colors, friendly characters, simple shapes, soft shadows, no text, no words, no letters"
+  width: 1360
+  height: 768
+  num_inference_steps: 4   # flux-schnell is fast with 4 steps
+
+  # RunningHub (cloud ComfyUI — free daily credits, FLUX.1 Kontext dev is unlimited free)
+  # Sign up at https://www.runninghub.ai, pick a FLUX workflow, copy its workflow ID.
+  runninghub_workflow_id: "your-workflow-id-here"
+  runninghub_prompt_node_id: "6"    # ComfyUI node ID for the text prompt input
+  runninghub_prompt_field: "text"   # Field name on that node
+  runninghub_base_url: "https://www.runninghub.ai"
+  # API key: set RUNNINGHUB_API_KEY in .env (preferred) or runninghub_api_key here
+
+  # Replicate (API, ~$0.003/image)
+  replicate_model: "black-forest-labs/flux-schnell"
+
+  # ComfyUI (local server, free)
+  comfyui_url: "http://127.0.0.1:8188"
+  comfyui_checkpoint: "animayhemPaleRider_v30PlainsDrifter.safetensors"  # 6.5GB, fits in 18GB RAM
+  num_inference_steps: 20
+  cfg_scale: 7.0
+  sampler_name: "euler_ancestral"
+  scheduler: "karras"
+  negative_prompt: "text, words, letters, watermark, ugly, blurry, deformed"
+
+voice:
+  provider: kokoro       # kokoro | elevenlabs
+  kokoro_voice: "af_sarah"
+  kokoro_speed: 0.95
+  elevenlabs_voice_id: "21m00Tcm4TlvDq8ikWAM"   # Rachel
+
+music:
+  provider: musicgen     # musicgen | suno_manual
+  musicgen_model: "facebook/musicgen-small"
+  extra_seconds: 5       # generate slightly longer than narration
+
+assembly:
+  fps: 24
+  transition_duration: 0.3
+  music_volume: 0.18
+  subtitle_font_size: 52
+  subtitle_color: "white"
+  subtitle_stroke_color: "black"
+  subtitle_stroke_width: 2
+  video_codec: libx264
+  audio_codec: aac
+  crf: 23
+
+upload:
+  youtube:
+    enabled: false
+    category_id: "27"      # Education
+    privacy: public
+    tags:
+      - kids
+      - learning
+      - education
+      - shorts

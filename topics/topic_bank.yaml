@@ -1,0 +1,57 @@
+# Topic bank for WonderReel
+# Add topics here to use with --batch mode
+# Format: category > list of topics
+
+science:
+  - Why is the sky blue?
+  - How do volcanoes work?
+  - Why do leaves change color in autumn?
+  - How do rainbows form?
+  - What are black holes?
+  - Why does the moon change shape?
+  - How do bees make honey?
+  - Why do we have seasons?
+  - How do fish breathe underwater?
+  - What makes thunder and lightning?
+  - Why do stars twinkle?
+  - How do caterpillars turn into butterflies?
+  - What is gravity?
+  - How does a seed grow into a tree?
+  - Why do we need to sleep?
+
+animals:
+  - How do penguins stay warm?
+  - Why do giraffes have long necks?
+  - How do spiders make webs?
+  - Why do dogs wag their tails?
+  - How do birds know where to migrate?
+  - Why do cats purr?
+  - How do sharks sleep?
+  - Why do elephants have big ears?
+  - How do fireflies glow?
+  - What do whales eat?
+
+human_body:
+  - How does your heart work?
+  - Why do we get goosebumps?
+  - How does your brain remember things?
+  - Why do we sneeze?
+  - How do our eyes see colors?
+  - Why do we have fingerprints?
+  - How do bones grow?
+  - Why do we get hungry?
+
+space:
+  - How big is the universe?
+  - What is a planet made of?
+  - How do rockets fly into space?
+  - Why is Mars red?
+  - What are stars made of?
+  - Could we live on another planet?
+
+history_and_world:
+  - How were the pyramids built?
+  - How do people in different countries say hello?
+  - What was the first computer?
+  - How was chocolate invented?
+  - Why do we celebrate birthdays?
