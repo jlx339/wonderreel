@@ -89,7 +89,7 @@ def run_pipeline(topic: str, config: dict, run_dir: Path = None) -> dict:
             narration=data["narration"],
             mood=data["mood"],
             topic=data["topic"],
-            scenes=[Scene(**s) for s in data["scenes"]],
+            scenes=[Scene(id=s["id"], text=s["text"], text_zh=s.get("text_zh", ""), image_prompt=s["image_prompt"]) for s in data["scenes"]],
         )
     else:
         print("[1/5] Generating script...")
@@ -99,7 +99,7 @@ def run_pipeline(topic: str, config: dict, run_dir: Path = None) -> dict:
             "narration": script.narration,
             "mood": script.mood,
             "topic": script.topic,
-            "scenes": [{"id": s.id, "text": s.text, "image_prompt": s.image_prompt} for s in script.scenes],
+            "scenes": [{"id": s.id, "text": s.text, "text_zh": s.text_zh, "image_prompt": s.image_prompt} for s in script.scenes],
         }, indent=2))
         print(f"  Title: {script.title}")
         print(f"  Scenes: {len(script.scenes)}")
@@ -121,7 +121,8 @@ def run_pipeline(topic: str, config: dict, run_dir: Path = None) -> dict:
     # --- Stage 5: Assembly ---
     print("\n[5/5] Assembling video...")
     video_paths = assemble_video(
-        image_paths, narration_path, music_path, script.scenes, run_dir, config
+        image_paths, narration_path, music_path, script.scenes, run_dir, config,
+        title=script.title
     )
 
     # --- Upload (optional) ---
